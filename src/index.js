@@ -39,9 +39,9 @@ loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 window.addEventListener('scroll', formSticky);
 
 function onSearch(e) {
-  e.preventDefault;
+  e.preventDefault();
   pageLoadStatus.hide();
-  postApiService.query = e.terget.searchQuery.value.trim();
+  postApiService.query = e.target.searchQuery.value.trim();
   loadMoreBtn.show();
   postApiService.resetPage();
   clearGallery();
@@ -51,35 +51,9 @@ function onSearch(e) {
 function onLoadMore() {
   fetchPosts();
   pageLoadStatus.show();
+  smoothScrool();
   observer.observe(pageLoadStatus.refs.pageLoadStatus);
 }
-// function fetchPosts() {
-//   loadMoreBtn.hide();
-//   pageLoadStatus.loadingShow();
-//   postApiService.fetchPost().then(data => {
-//     const curentPage = postApiService.page - 1;
-//     postApiService.hits = data.totalHits;
-//     if (!data.totalHits) {
-//       loadMoreBtn.hide();
-//       pageLoadStatus.errorShow();
-
-//       return Notify.failure(
-//         'Sorry, there are no images matching your search query. Please try again.'
-//       );
-//     }
-//     if (!data.hits.length) {
-//       loadMoreBtn.hide();
-//       pageLoadStatus.lastElemShow();
-//       return;
-//     }
-//     renderPost(data.hits);
-//     if (curentPage === 1) {
-//       Notify.success(`Hooray! We found ${postApiService.hits} images.`);
-//       loadMoreBtn.show();
-//     }
-//     pageLoadStatus.enable();
-//   });
-// }
 
 function fetchPosts() {
   loadMoreBtn.hide();
