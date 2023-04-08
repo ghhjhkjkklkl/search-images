@@ -113,7 +113,7 @@ function renderPost(data) {
     )
     .join('');
 
-  refs.gallery.insertAdjacentElement('beforeend', markupPost);
+  refs.gallery.insertAdjacentHTML('beforeend', markupPost);
   lightbox.refresh();
 }
 function clearGallery() {
