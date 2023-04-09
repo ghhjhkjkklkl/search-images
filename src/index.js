@@ -24,19 +24,23 @@ function onSearch(evt) {
 
   if (pixabayService.query === '') {
     return Notiflix.Notify.warning('Enter text to search the gallery.');
+  } else {
+    clearGalleryContainer();
+    fetchImages().then(() => {
+      createGallerySimplelightbox();
+    });
   }
-
-  clearGalleryContainer();
-  fetchImages().then(() => {
-    createGallerySimplelightbox();
-  });
 }
 
 function onLoadMore() {
-  fetchImages().then(() => {
-    refreshGallerySimplelightbox();
-    smoothScroll();
-  });
+  if (pixabayService.query === '') {
+    return Notiflix.Notify.warning('Enter text to search the gallery.');
+  } else {
+    fetchImages().then(() => {
+      refreshGallerySimplelightbox();
+      smoothScroll();
+    });
+  }
 }
 
 function fetchImages() {
